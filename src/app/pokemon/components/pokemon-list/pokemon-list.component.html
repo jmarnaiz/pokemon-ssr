@@ -1,8 +1,8 @@
 <div class="grid gap-3 grid-cols-1 sm:grid-cols-3 md:grid-cols-5">
   <!-- Pokemon Card (12) -->
-  @for (pokemon of '123456789012'.split(''); track $index) {
+  @for (pokemon of pokemonList(); track pokemon.id) {
 
-  <pokemon-card />
+  <pokemon-card [pokemon]="pokemon" />
   }
 
   <!-- TODO: Mostrar EMPTY Pokemon -->
