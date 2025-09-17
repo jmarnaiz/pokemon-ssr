@@ -10,14 +10,15 @@ export class PokemonService {
   private _http = inject(HttpClient);
 
   public loadPage(page: number): Observable<SimplePokemon[]> {
-    const params = {
-      params: new HttpParams().set('page', page * 20).set('limit', 20),
-    };
-    if (page != 0) {
+    if (page !== 0) {
       --page;
     }
 
     page = Math.max(0, page);
+
+    const params = {
+      params: new HttpParams().set('offset', page * 20).set('limit', 20),
+    };
 
     return this._http
       .get<PokemonAPIResponse>('https://pokeapi.co/api/v2/pokemon', params)
